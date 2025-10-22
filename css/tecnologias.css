@@ -13,7 +13,7 @@ body {
   background: rgba(50,25,0,0.85);
   border-radius: 15px;
   box-shadow: 0 0 20px #ff9900;
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 h1 {
@@ -58,3 +58,4 @@ ul li::before {
 .footer p {
   margin: 5px 0;
 }
+
