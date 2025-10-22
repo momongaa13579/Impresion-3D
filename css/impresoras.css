@@ -14,7 +14,10 @@ body {
   border-radius: 15px;
   box-shadow: 0 0 25px #00f0ff;
   padding-top: 10%;
+}
 
+.logo2 {
+  border-radius: 50%;
 }
 
 h1 {
@@ -66,4 +69,5 @@ ul li::before {
   border-radius: 10px;
   width: 250px;
   height: 200px;
+
 }
