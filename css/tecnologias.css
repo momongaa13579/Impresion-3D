@@ -1,0 +1,60 @@
+body {
+  font-family: 'Audiowide', sans-serif;
+  background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+  color: #ff9900;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background: rgba(50,25,0,0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ff9900;
+  padding-top: 10%;
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+  text-shadow: 0 0 12px #ff9900;
+}
+
+h2 {
+  color: #ffcc66;
+  margin-top: 20px;
+  text-shadow: 0 0 8px #ff9900;
+}
+
+p, ul li {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+ul li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+}
+
+ul li::before {
+  content: '⇒';
+  color: #ff9900;
+  position: absolute;
+  left: -20px;
+}
+
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(50,25,0,0.85);
+  color: #ff9900;
+  box-shadow: 0 -2px 15px #ff9900;
+  border-top: 2px solid #ff9900;
+  font-size: 14px;
+}
+.footer p {
+  margin: 5px 0;
+}

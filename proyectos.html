@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/nav2.css">
+    <link rel="stylesheet" href="css/proyectos.css">
+    <script src="js/model.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+</head>
+<body>
+    
+<nav>
+  <div class="nav-container">
+    <!-- Logo JPG -->
+    <a href="#" class="logo">
+      <img src="img/logo.jpg" alt="Logo del sitio">
+    </a>
+
+    <!-- Checkbox hamburguesa -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+    <!-- Menú -->
+    <ul class="menu">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="tecnologias.html">Tecnologías</a></li>
+      <li><a href="materiales.html">Materiales</a></li>
+      <li><a href="impresoras.html">Impresoras</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Proyectos de impresión 3D</h1>
+
+  <p>La impresión 3D permite desarrollar proyectos innovadores en diversas áreas, desde educación hasta industria.</p>
+
+  <h2>Ideas de proyectos</h2>
+  <ul>
+    <li><strong>Educativos:</strong> Modelos anatómicos, mapas en 3D, piezas de ciencias y tecnología.</li>
+    <model-viewer src="odjetos/Telescopio.glb" alt="Modelo de repo" auto-rotate camera-controls exposure="0.5" shadow-intensity="1"></model-viewer>
+    <li><strong>Hogar:</strong> Decoración personalizada, organizadores y utensilios funcionales.</li>
+    <model-viewer src="odjetos/comedor.glb" alt="Modelo de repo" auto-rotate camera-controls exposure="0.5" shadow-intensity="1"></model-viewer>
+    <li><strong>Industria y mecánica:</strong> Prototipos de piezas, herramientas personalizadas, repuestos.</li>
+    <model-viewer src="odjetos/panel solar .glb" alt="Modelo de repo" auto-rotate camera-controls exposure="0.5" shadow-intensity="1"></model-viewer>
+    <li><strong>Medicina:</strong> Prótesis personalizadas, guías quirúrgicas, modelos anatómicos.</li>
+    <model-viewer src="odjetos/mano 1.glb" alt="modelo de una mano" auto-rotate camera-controls exposure="0.5" shadow-intensity="1" ></model-viewer> 
+    <li><strong>Arte y diseño:</strong> Esculturas, joyería, maquetas arquitectónicas.</li>
+  </ul>
+
+  <h2>Consejos para proyectos</h2>
+  <ul>
+    <li>Diseñar pensando en la orientación y soporte de impresión.</li>
+    <li>Elegir materiales adecuados según resistencia y acabado requerido.</li>
+    <li>Probar prototipos en menor escala antes de imprimir piezas finales.</li>
+  </ul>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2025 Impresión 3D | Todos los derechos reservados</p>
+  <p>Creado con pasión por la tecnología y la innovación</p>
+</footer>
+
+
+</body>
+</html>
