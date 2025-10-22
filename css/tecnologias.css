@@ -16,6 +16,10 @@ body {
   padding-top: 5%;
 }
 
+.logo2 {
+  border-radius: 50%;
+}
+
 h1 {
   text-align: center;
   font-size: 36px;
@@ -58,4 +62,5 @@ ul li::before {
 .footer p {
   margin: 5px 0;
 }
+
 
