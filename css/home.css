@@ -13,6 +13,7 @@ body {
   margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
+  padding-top: 10%;
 }
 
 header h1 {
@@ -88,4 +89,5 @@ header p {
     font-size: 20px;
   }
 }
+
   
