@@ -25,6 +25,10 @@ body {
   text-align: center;
 }
 
+.logo2 {
+  border-radius: 50%;
+}
+
 h1, h2 {
   color: #1877f2;
   margin-bottom: 1rem;
@@ -96,3 +100,4 @@ form input:focus {
     padding: 2rem 1.5rem;
   }
 }
+
