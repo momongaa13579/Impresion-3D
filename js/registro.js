@@ -1,32 +1,53 @@
-document.addEventListener("DOMContentLoaded", ()=>{
-  const form = document.getElementById("registroForm");
-  const msg = document.getElementById("reg-msg");
+// Importar módulos de Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-  form.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    const nombre = document.getElementById("reg-nombre").value.trim();
-    const apellido = document.getElementById("reg-apellido").value.trim();
-    const pass = document.getElementById("reg-pass").value.trim();
+// Configuración de Firebase (usa la tuya)
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "loginwed-975b4.firebaseapp.com",
+  projectId: "loginwed-975b4",
+  storageBucket: "loginwed-975b4.firebasestorage.app",
+  messagingSenderId: "917659536943",
+  appId: "1:917659536943:web:603a36379d166062d740da"
+};
 
-    if(!nombre || !apellido || !pass){
-      msg.textContent = "⚠️ Completa todos los campos";
-      msg.style.color = "orange";
-      return;
-    }
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const existe = usuarios.some(u=> u.nombre.toLowerCase()===nombre.toLowerCase() && u.apellido.toLowerCase()===apellido.toLowerCase());
-    if(existe){
-      msg.textContent = "❌ Usuario ya registrado";
-      msg.style.color = "red";
-      return;
-    }
+// Escuchar envío del formulario
+document.getElementById("registroForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    usuarios.push({nombre, apellido, pass});
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    msg.textContent = "✅ Registro exitoso, redirigiendo al login...";
-    msg.style.color = "lightgreen";
+  const nombre = document.getElementById("reg-nombre").value.trim();
+  const apellido = document.getElementById("reg-apellido").value.trim();
+  const pass = document.getElementById("reg-pass").value.trim();
 
-    setTimeout(()=>{ window.location.href="login.html"; }, 1500);
-  });
+  if (!nombre || !apellido || !pass) {
+    document.getElementById("reg-msg").innerText = "⚠️ Todos los campos son obligatorios";
+    return;
+  }
+
+  try {
+    // Crear usuario en Firebase Authentication (usando nombre+apellido como correo temporal)
+    const fakeEmail = `${nombre}.${apellido}@fake.com`; 
+    const userCredential = await createUserWithEmailAndPassword(auth, fakeEmail, pass);
+    const user = userCredential.user;
+
+    // Guardar info en Firestore
+    await setDoc(doc(db, "usuarios", user.uid), {
+      nombre,
+      apellido,
+      pass
+    });
+
+    document.getElementById("reg-msg").innerText = "✅ Usuario registrado correctamente";
+    document.getElementById("registroForm").reset();
+
+  } catch (error) {
+    document.getElementById("reg-msg").innerText = "❌ Error: " + error.message;
+  }
 });
