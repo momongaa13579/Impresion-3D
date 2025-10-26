@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "TU_API_KEY",
@@ -12,6 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -19,15 +21,25 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const nombre = document.getElementById("login-nombre").value.trim();
   const apellido = document.getElementById("login-apellido").value.trim();
   const pass = document.getElementById("login-pass").value.trim();
-
   const fakeEmail = `${nombre}.${apellido}@fake.com`;
 
   try {
-    await signInWithEmailAndPassword(auth, fakeEmail, pass);
-    document.getElementById("login-msg").innerText = "✅ Inicio de sesión exitoso";
-    setTimeout(() => {
-      window.location.href = "admin.html"; // Redirige al panel admin
-    }, 1000);
+    const userCredential = await signInWithEmailAndPassword(auth, fakeEmail, pass);
+    const user = userCredential.user;
+
+    // Verificar rol desde Firestore
+    const docRef = doc(db, "usuarios", user.uid);
+    const docSnap = await getDoc(docRef);
+    const rol = docSnap.exists() ? docSnap.data().rol : "usuario";
+
+    if (rol === "admin") {
+      document.getElementById("login-msg").innerText = "🔓 Inicio sesión admin";
+      setTimeout(() => window.location.href = "admin.html", 1000);
+    } else {
+      document.getElementById("login-msg").innerText = "🔓 Inicio sesión usuario normal";
+      // Aquí puedes redirigir a otra página para usuarios normales
+    }
+
   } catch (error) {
     document.getElementById("login-msg").innerText = "❌ Usuario o contraseña incorrectos";
   }
