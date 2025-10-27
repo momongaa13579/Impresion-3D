@@ -8,16 +8,11 @@ body {
 
 .container {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 50px auto;
   padding: 25px;
   background: rgba(50,25,0,0.85);
   border-radius: 15px;
   box-shadow: 0 0 20px #ff9900;
-  padding-top: 5%;
-}
-
-.logo2 {
-  border-radius: 50%;
 }
 
 h1 {
@@ -62,5 +57,3 @@ ul li::before {
 .footer p {
   margin: 5px 0;
 }
-
-

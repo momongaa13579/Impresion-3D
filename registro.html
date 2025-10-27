@@ -9,15 +9,29 @@
 <body>
   <div class="container">
     <h2>Registrarse</h2>
-    <form id="registroForm">
-      <input type="text" id="reg-nombre" placeholder="Nombre" required>
-      <input type="text" id="reg-apellido" placeholder="Apellido" required>
-      <input type="password" id="reg-pass" placeholder="Contraseña" required>
-      <button type="submit" class="btn">Registrar</button>
-    </form>
+  
+<form id="registroForm">
+  <input type="text" id="reg-nombre" placeholder="Nombre" required>
+  <input type="text" id="reg-apellido" placeholder="Apellido" required>
+  <input type="password" id="reg-pass" placeholder="Contraseña" required>
+
+  <!-- Checkbox para registrarse como admin -->
+  <label>
+    <input type="checkbox" id="reg-es-admin"> Registrarme como Admin
+  </label>
+
+  <!-- Campo extra de contraseña de admin -->
+  <input type="password" id="reg-pass-admin" placeholder="Contraseña de Admin">
+
+  <button type="submit" class="btn">Registrar</button>
+</form>
+
+
+
+
     <p id="reg-msg" class="msg"></p>
     <p class="switch-link">¿Ya tienes cuenta? <a href="login.html">Inicio de Sesión</a></p>
   </div>
-  <script src="js/registro.js"></script>
+  <script type="module" src="js/registro.js"></script>
 </body>
 </html>

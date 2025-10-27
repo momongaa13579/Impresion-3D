@@ -14,10 +14,6 @@ body, html {
   text-align: center;
 }
 
-.logo2 {
-  border-radius: 50%;
-}
-
 .hero h1 {
   font-size: 2.5em;
   margin-bottom: 10px;
@@ -48,6 +44,5 @@ body, html {
   background-color: transparent;
   color: #1f1f2e;
 }
-
 
 

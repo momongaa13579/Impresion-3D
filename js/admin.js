@@ -1,50 +1,67 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import { getFirestore, getDocs, collection, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+// Cargar usuarios guardados
+const tablaBody = document.querySelector("#tablaUsuarios tbody");
+const confirmacionDiv = document.getElementById("confirmacion");
+const claveInput = document.getElementById("claveAdmin");
+const btnConfirmar = document.getElementById("btnConfirmar");
+const btnCancelar = document.getElementById("btnCancelar");
 
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "loginwed-975b4.firebaseapp.com",
-  projectId: "loginwed-975b4",
-  storageBucket: "loginwed-975b4.firebasestorage.app",
-  messagingSenderId: "917659536943",
-  appId: "1:917659536943:web:603a36379d166062d740da"
-};
+let usuarioAEliminar = null; // guardará el índice del usuario a borrar
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+function cargarUsuarios() {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  tablaBody.innerHTML = "";
 
-// Cargar usuarios en la tabla
-async function cargarUsuarios() {
-  const tabla = document.querySelector("#tablaUsuarios tbody");
-  tabla.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "usuarios"));
-  let i = 1;
-  querySnapshot.forEach((docu) => {
-    const data = docu.data();
-    const fila = `
-      <tr>
-        <td>${i++}</td>
-        <td>${data.nombre}</td>
-        <td>${data.apellido}</td>
-        <td><button onclick="eliminarUsuario('${docu.id}')">Eliminar</button></td>
-      </tr>
+  usuarios.forEach((user, index) => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${user.nombre}</td>
+      <td>${user.apellido}</td>
+      <td><button onclick="mostrarConfirmacion(${index})">Eliminar</button></td>
     `;
-    tabla.innerHTML += fila;
+    tablaBody.appendChild(fila);
   });
 }
 
-window.eliminarUsuario = async function(id) {
-  const confirmar = confirm("¿Seguro que deseas eliminar este usuario?");
-  if (!confirmar) return;
+// Mostrar la sección de confirmación
+function mostrarConfirmacion(index) {
+  usuarioAEliminar = index;
+  confirmacionDiv.style.display = "block";
+  claveInput.value = "";
+  claveInput.focus();
+}
 
-  await deleteDoc(doc(db, "usuarios", id));
-  alert("✅ Usuario eliminado correctamente");
+// Confirmar eliminación
+btnConfirmar.addEventListener("click", () => {
+  const clave = claveInput.value.trim();
+
+  if (clave === "123") {
+    eliminarUsuario(usuarioAEliminar);
+    confirmacionDiv.style.display = "none";
+  } else {
+    alert("❌ Contraseña de administrador incorrecta");
+  }
+});
+
+// Cancelar eliminación
+btnCancelar.addEventListener("click", () => {
+  confirmacionDiv.style.display = "none";
+  usuarioAEliminar = null;
+});
+
+// Eliminar usuario del localStorage
+function eliminarUsuario(index) {
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  usuarios.splice(index, 1);
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
   cargarUsuarios();
-};
+  alert("✅ Usuario eliminado correctamente");
+}
 
-window.volverIndex = function() {
+// Volver al inicio
+function volverIndex() {
   window.location.href = "index.html";
-};
+}
 
+// Inicializar
 cargarUsuarios();

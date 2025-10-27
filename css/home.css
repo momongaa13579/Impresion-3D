@@ -10,10 +10,14 @@ body {
 
 .home-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 25px auto;
   padding: 40px 20px;
   text-align: center;
   padding-top: 10%;
+}
+
+.logo2 {
+  border-radius: 50%;
 }
 
 header h1 {
@@ -26,10 +30,6 @@ header p {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 15px;
-}
-
-.logo2 {
-  border-radius: 50%;
 }
 
 .topics {
@@ -93,6 +93,4 @@ header p {
     font-size: 20px;
   }
 }
-
   
-

@@ -8,16 +8,13 @@ body {
 
 .container {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 50px auto;
   padding: 25px;
   background: rgba(0,0,0,0.7);
   border-radius: 15px;
   box-shadow: 0 0 25px #00f0ff;
-  padding-top: 10%;
-}
+  padding-top: 5%;
 
-.logo2 {
-  border-radius: 50%;
 }
 
 h1 {
@@ -69,5 +66,4 @@ ul li::before {
   border-radius: 10px;
   width: 250px;
   height: 200px;
-
 }
